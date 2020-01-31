@@ -1,32 +1,49 @@
 package fr.d2factory.libraryapp.book;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
-/**
- * The book repository emulates a database via 2 HashMaps
- */
-public class BookRepository {
-    private Map<ISBN, Book> availableBooks = new HashMap<>();
-    private Map<Book, LocalDate> borrowedBooks = new HashMap<>();
+public interface BookRepository {
 
-    public void addBooks(List<Book> books){
-        //TODO implement the missing feature
-    }
+	/**
+	 * Add books to the list of library books
+	 *
+	 * @param books the list of book to add to library
+	 */
 
-    public Book findBook(long isbnCode) {
-        //TODO implement the missing feature
-        return null;
-    }
+	public void addBooks(List<Book> books);
 
-    public void saveBookBorrow(Book book, LocalDate borrowedAt){
-        //TODO implement the missing feature
-    }
+	/**
+	 * find book in library
+	 *
+	 * @param isbnCode the isbnCode fo the book to find
+	 * 
+	 * @return book the found book
+	 * 
+	 */
 
-    public LocalDate findBorrowedBookDate(Book book) {
-        //TODO implement the missing feature
-        return null;
-    }
+	public Optional<Book> findBook(long isbnCode);
+
+	/**
+	 * add book in list of borrwoed books
+	 * 
+	 * @param book the borrowed book to add in list
+	 * 
+	 * @param borrowedAt the date of borrow book
+	 * 
+	 */
+
+	public void saveBookBorrow(Book book, LocalDate borrowedAt);
+
+	/**
+	 * find date of borrowing books
+	 *
+	 * @param book the borrowed book
+	 * 
+	 * @return LocalDate the date of borrowed book
+	 * 
+	 */
+
+	public Optional<LocalDate> findBorrowedBookDate(Book book);
 }
